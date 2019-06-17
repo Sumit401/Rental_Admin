@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QR_Scanner"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/qrcheck"
+        android:visibility="gone"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/check" />
+    </LinearLayout>
+    <RelativeLayout
+        android:visibility="visible"
+        android:id="@+id/layout_qr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <SurfaceView
+            android:layout_marginLeft="30sp"
+            android:layout_marginRight="30sp"
+            android:layout_marginBottom="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:id="@+id/camerapreview"/>
+        <TextView
+            android:layout_below="@id/camerapreview"
+            android:textSize="18sp"
+            android:id="@+id/cameraresult"
+            android:gravity="center"
+            android:text="Please focus on QR code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

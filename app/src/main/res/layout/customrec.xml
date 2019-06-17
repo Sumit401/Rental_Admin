@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    android:layout_margin="10sp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/layoutinfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+            <ImageView
+                android:padding="10sp"
+                android:id="@+id/vehicle_img"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/veh_name"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:gravity="center_horizontal"
+                android:text="Vehicle Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:padding="10sp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_margin="5sp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="#000"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Booked By"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:id="@+id/username"
+                        android:text="Name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="5sp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="#000"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Booking Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:id="@+id/booking_date"
+                        android:text="Booking Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="5sp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:textColor="#000"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Booking From Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:id="@+id/from_date"
+                        android:text="From Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_margin="5sp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="#000"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Booking Upto Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:id="@+id/upto_date"
+                        android:text="Upto Date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_margin="5sp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="#000"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:text="Status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:id="@+id/status"
+                        android:text="Status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="5sp"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="Message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:id="@+id/messages"
+                    android:text="Message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+</android.support.v7.widget.CardView>
