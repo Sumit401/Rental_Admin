@@ -1,4 +1,4 @@
-package com.example.bike_rental_admin;
+package com.rental.ryde365_admin;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -15,7 +15,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity1 extends AppCompatActivity {
 
     String url="https://gogoogol.in/android/admin/login.php";
     EditText id,pass;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main1);
         id=findViewById(R.id.mailid);
         pass=findViewById(R.id.pass);
         submit=findViewById(R.id.submitdata);
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     @SuppressLint("StaticFieldLeak")
     private class Login_data extends AsyncTask<String,String,String> {
 
-        ProgressDialog dialog=new ProgressDialog(MainActivity.this);
+        ProgressDialog dialog=new ProgressDialog(MainActivity1.this);
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     String s1=object.getString("response");
                     if (s1.equalsIgnoreCase("Success")){
                         Snackbar.make(getWindow().getDecorView().getRootView(),"Success",Snackbar.LENGTH_SHORT);
-                        Intent intent=new Intent(MainActivity.this,MainActivity2.class);
+                        Intent intent=new Intent(MainActivity1.this,MainActivity2.class);
                         startActivity(intent);
                         finish();
                     }else if (s1.equalsIgnoreCase("Failed")){

@@ -1,4 +1,4 @@
-package com.example.bike_rental_admin;
+package com.rental.ryde365_admin;
 
 import org.json.JSONException;
 import org.json.JSONObject;

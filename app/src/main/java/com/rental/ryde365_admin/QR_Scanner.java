@@ -1,4 +1,4 @@
-package com.example.bike_rental_admin;
+package com.rental.ryde365_admin;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -78,11 +78,11 @@ public class QR_Scanner extends AppCompatActivity {
             }
         });
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+
             @Override
             public void release() {
 
             }
-
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> qrcodes=detections.getDetectedItems();

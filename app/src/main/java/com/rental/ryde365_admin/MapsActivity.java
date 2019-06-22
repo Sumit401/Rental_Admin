@@ -1,10 +1,11 @@
-package com.example.bike_rental_admin;
+package com.rental.ryde365_admin;
 
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -25,7 +26,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String id;
     private GoogleMap mMap;
     Marker marker;
-    int k=0;
+    int k=0,l=0;
+    Handler handler;
+    String lat1="0",lng1="0";
     String url="https://gogoogol.in/android/admin/getloc.php";
 
     @Override
@@ -40,6 +43,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(null);
+    }
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
@@ -47,7 +56,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
        /* LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
-        final Handler handler=new Handler();
+         handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -86,23 +95,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     JSONObject object = new JSONObject(s);
                     String s1=object.getString("response");
                     if (s1.equalsIgnoreCase("success")){
-                        String lat1=object.getString("lat");
-                        String lng1=object.getString("lng");
-                        if (lat1 != null && lng1!=null) {
-                            double s2 = Double.parseDouble(lat1);
-                            double s3 = Double.parseDouble(lng1);
-                            LatLng latLng = new LatLng(s2, s3);
+                            lat1=object.getString("lat");
+                            lng1=object.getString("lng");
+                                double s2 = Double.parseDouble(lat1);
+                                double s3 = Double.parseDouble(lng1);
 
-                            if (marker != null) {
-                                marker.remove();
-                            }
-                            marker = mMap.addMarker(new MarkerOptions().position(latLng).title("Vehicle"));
-                            if (k == 0) {
-                                k = 1;
-                                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 16);
-                                mMap.animateCamera(cameraUpdate);
-                            }
-                        }
+                                if (s2 !=0 && s3 !=0) {
+                                    LatLng latLng = new LatLng(s2, s3);
+                                    if (marker != null) {
+                                        marker.remove();
+                                    }
+                                    marker = mMap.addMarker(new MarkerOptions().position(latLng).title("Vehicle"));
+                                    if (k == 0) {
+                                        k = 1;
+                                        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 16);
+                                        mMap.animateCamera(cameraUpdate);
+                                    }
+                                }else {
+                                    if (l == 0) {
+                                        l=1;
+                                        Toast.makeText(getApplicationContext(), "Status is Inactive. Please turn on Status to get Location", Toast.LENGTH_LONG).show();
+                                    }
+                                }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
