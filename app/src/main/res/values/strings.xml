@@ -1,4 +1,15 @@
 <resources>
-    <string name="app_name">RyDE 365 Admin</string>
+    <string name="app_name">RyDE 365 Partner</string>
     <string name="title_activity_maps">Map</string>
+    <string-array name="fuel">
+        <item>Select Fuel Type</item>
+        <item>Petrol</item>
+        <item>Diesel</item>
+        <item>CNG</item>
+    </string-array>
+    <string-array name="vehicle_type">
+        <item>Select Vehicle Type</item>
+        <item>Car</item>
+        <item>Bike</item>
+    </string-array>
 </resources>

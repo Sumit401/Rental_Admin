@@ -3,6 +3,7 @@ package com.rental.ryde365_admin;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,15 @@ public class MainActivity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main1);
+        SharedPreferences preferences=getSharedPreferences("Admin",MODE_PRIVATE);
+        String user=preferences.getString("user",null);
+
+        if (user !=null){
+            Intent intent=new Intent(MainActivity1.this,MainActivity2.class);
+            startActivity(intent);
+            finish();
+        }
+
         id=findViewById(R.id.mailid);
         pass=findViewById(R.id.pass);
         submit=findViewById(R.id.submitdata);
@@ -79,7 +89,10 @@ public class MainActivity1 extends AppCompatActivity {
                     JSONObject object=new JSONObject(s);
                     String s1=object.getString("response");
                     if (s1.equalsIgnoreCase("Success")){
-                        Snackbar.make(getWindow().getDecorView().getRootView(),"Success",Snackbar.LENGTH_SHORT);
+                        SharedPreferences preferences=getSharedPreferences("Admin",MODE_PRIVATE);
+                        SharedPreferences.Editor editor=preferences.edit();
+                        editor.putString("user",id.getText().toString().trim());
+                        editor.apply();
                         Intent intent=new Intent(MainActivity1.this,MainActivity2.class);
                         startActivity(intent);
                         finish();

@@ -6,6 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity3">
     <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/act3_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
@@ -207,7 +209,6 @@
 </LinearLayout>
     </ScrollView>
     </LinearLayout>
-
         <Button
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -217,7 +218,7 @@
             android:padding="20sp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:background="#70ad4d"
+            android:background="@color/green"
             android:id="@+id/trackcustomer"
             android:text="Track Customer"
             android:layout_weight="1"

@@ -7,16 +7,18 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,8 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 public class MainActivity3 extends AppCompatActivity{
 
@@ -37,9 +41,11 @@ public class MainActivity3 extends AppCompatActivity{
     ImageButton qrscan;
     Button trackcustomer;
     int switch_status;
+    LinearLayout act3_layout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_main3);
         veh_name=findViewById(R.id.act3vehicle_name);
         username=findViewById(R.id.act3username);
@@ -50,6 +56,8 @@ public class MainActivity3 extends AppCompatActivity{
         act3status=findViewById(R.id.act3_status);
         vehicle_image=findViewById(R.id.act3vehicleimg);
         usermessages=findViewById(R.id.act3messages);
+        act3_layout=findViewById(R.id.act3_layout);
+
         qrscan=findViewById(R.id.qrscan);
         final Intent i=getIntent();
         final String s1=i.getStringExtra("id");
@@ -67,7 +75,7 @@ public class MainActivity3 extends AppCompatActivity{
         act3status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked==true){
+                if (isChecked){
                     Toast.makeText(MainActivity3.this,"Checked",Toast.LENGTH_SHORT).show();
                     switch_status=1;
                 }else if (isChecked==false){
@@ -144,6 +152,7 @@ public class MainActivity3 extends AppCompatActivity{
                     JSONObject object=new JSONObject(s);
                     String s1=object.getString("response");
                     if (s1.equalsIgnoreCase("Success")){
+                        act3_layout.setVisibility(View.VISIBLE);
                         JSONArray array=object.getJSONArray("vehicleinfo");
                         for (int i=0;i<array.length();i++){
                             JSONObject j2 = array.getJSONObject(i);
