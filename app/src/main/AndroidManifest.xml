@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Edit_Vehicle"></activity>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -65,7 +65,9 @@
             android:name=".Update_Vehicle"
             android:label="Update Vehicle"
             android:parentActivityName=".MainActivity2" />
-
+        <activity android:name=".Edit_Vehicle"
+            android:label="Edit Vehicle"
+            android:parentActivityName=".MainActivity2"/>
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
