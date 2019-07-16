@@ -27,8 +27,9 @@ public class MainActivity1 extends AppCompatActivity {
         setContentView(R.layout.activity_main1);
         SharedPreferences preferences=getSharedPreferences("Admin",MODE_PRIVATE);
         String user=preferences.getString("user",null);
+        String vendor_id =preferences.getString("vendor_id",null);
 
-        if (user !=null){
+        if (user !=null && vendor_id != null){
             Intent intent=new Intent(MainActivity1.this,MainActivity2.class);
             startActivity(intent);
             finish();
@@ -83,7 +84,7 @@ public class MainActivity1 extends AppCompatActivity {
             super.onPostExecute(s);
             dialog.dismiss();
             if (s==null){
-                Snackbar.make(getWindow().getDecorView().getRootView(),"No Internet",Snackbar.LENGTH_SHORT);
+                Snackbar.make(getWindow().getDecorView().getRootView(),"No Internet",Snackbar.LENGTH_SHORT).show();
             }else{
                 try {
                     JSONObject object=new JSONObject(s);
@@ -91,7 +92,8 @@ public class MainActivity1 extends AppCompatActivity {
                     if (s1.equalsIgnoreCase("Success")){
                         SharedPreferences preferences=getSharedPreferences("Admin",MODE_PRIVATE);
                         SharedPreferences.Editor editor=preferences.edit();
-                        editor.putString("user",id.getText().toString().trim());
+                        editor.putString("vendor_id",object.getString("vendor_id"));
+                        editor.putString("user",object.getString("user_id"));
                         editor.apply();
                         Intent intent=new Intent(MainActivity1.this,MainActivity2.class);
                         startActivity(intent);

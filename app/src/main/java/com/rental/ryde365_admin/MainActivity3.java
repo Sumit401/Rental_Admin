@@ -75,13 +75,13 @@ public class MainActivity3 extends AppCompatActivity{
         act3status.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                /*if (isChecked){
                     Toast.makeText(MainActivity3.this,"Checked",Toast.LENGTH_SHORT).show();
                     switch_status=1;
                 }else if (isChecked==false){
                     Toast.makeText(MainActivity3.this,"Not Checked",Toast.LENGTH_SHORT).show();
                     switch_status=0;
-                }
+                }*/
                 try {
                     JSONObject object1=new JSONObject();
                     object1.put("id",s1);

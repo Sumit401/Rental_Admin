@@ -5,9 +5,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -33,17 +35,30 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Handler handler;
     String lat1="0",lng1="0";
     String url="https://gogoogol.in/android/admin/getloc.php";
+    FloatingActionButton camera_update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        camera_update=findViewById(R.id.camera_update);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         Objects.requireNonNull(mapFragment).getMapAsync(this);
         Intent intent=getIntent();
         id=intent.getStringExtra("id");
+
+        camera_update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!lat1.equals("0") && !lng1.equals("0")){
+                    LatLng latLng=new LatLng(Float.parseFloat(lat1),Float.parseFloat(lng1));
+                    CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 16);
+                    mMap.animateCamera(cameraUpdate);
+                }
+            }
+        });
     }
 
     @Override
@@ -117,6 +132,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     }
                                     marker = mMap.addMarker(new MarkerOptions().position(latLng).title("Vehicle"));
                                     if (k == 0) {
+                                        // camera will be updated only once..........................
                                         k = 1;
                                         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 16);
                                         mMap.animateCamera(cameraUpdate);

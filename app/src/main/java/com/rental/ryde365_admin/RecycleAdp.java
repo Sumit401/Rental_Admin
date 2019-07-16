@@ -49,7 +49,7 @@ public class RecycleAdp extends RecyclerView.Adapter<RecycleAdp.MyViewHolder> {
     @NonNull
     @Override
     public RecycleAdp.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.customrec,viewGroup,false);
+        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.booking_recycler,viewGroup,false);
         return new MyViewHolder(view);
     }
 

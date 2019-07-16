@@ -2,8 +2,12 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="actionbar_height">50dip</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="cardCornerRadius">4dp</dimen>
+    <dimen name="cardElevation">4dp</dimen>
+    <dimen name="cardview_horizontal_padding">6dp</dimen>
+    <dimen name="cardview_vertical_padding">2dp</dimen>
+    <dimen name="actionbar_height">50dip</dimen>
     <dimen name="actionbar_item_height">50dip</dimen>
     <dimen name="actionbar_item_width">50dip</dimen>
     <dimen name="width">140dip</dimen>
@@ -1016,4 +1020,5 @@
     <dimen name="dim_998">998dp</dimen>
     <dimen name="dim_999">999dp</dimen>
     <dimen name="dim_1000">1000dp</dimen>
+
 </resources>

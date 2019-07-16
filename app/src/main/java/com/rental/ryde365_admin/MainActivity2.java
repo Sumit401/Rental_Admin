@@ -14,9 +14,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -40,24 +42,56 @@ public class MainActivity2 extends AppCompatActivity {
     ArrayList<String> messages=new ArrayList<>();
     ArrayList<String> statusofbooking=new ArrayList<>();
     boolean doubleBackToExitPressedOnce = false;
-    FloatingActionButton fab;
 
+    private boolean fabExpanded = false;
+    private FloatingActionButton fabSettings;
+    private LinearLayout layoutFabadd;
+    private LinearLayout layoutFabupdate;
+    private LinearLayout layoutFabdelete;
+    SharedPreferences sharedPreferences;
+    String vendor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         recyclerView=findViewById(R.id.recycler);
-        fab=findViewById(R.id.fab);
+        fabSettings = this.findViewById(R.id.fabSetting);
 
+        layoutFabadd = this.findViewById(R.id.layoutFab_add);
+        layoutFabdelete = this.findViewById(R.id.layoutFab_delete);
+        layoutFabupdate = this.findViewById(R.id.layoutFab_update);
+        sharedPreferences=getSharedPreferences("Admin",MODE_PRIVATE);
+        vendor=sharedPreferences.getString("vendor_id", null);
         ActivityCompat.requestPermissions(MainActivity2.this, new String[]{Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        layoutFabadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MainActivity2.this,Add_Vehicle.class);
                 startActivity(intent);
             }
         });
+        layoutFabupdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity2.this,Update_Vehicle.class);
+                startActivity(intent);
+            }
+        });
 
+        fabSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (fabExpanded == true){
+                    closeSubMenusFab();
+                } else {
+                    openSubMenusFab();
+                }
+            }
+        });
+        closeSubMenusFab();
 
         try {
             JSONObject object=new JSONObject();
@@ -67,6 +101,26 @@ public class MainActivity2 extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void closeSubMenusFab(){
+        layoutFabadd.setVisibility(View.INVISIBLE);
+        layoutFabupdate.setVisibility(View.INVISIBLE);
+        layoutFabdelete.setVisibility(View.INVISIBLE);
+        //Change settings icon to '+' icon
+        fabSettings.setImageResource(R.drawable.ic_settings_black_24dp);
+        fabExpanded = false;
+    }
+
+    //Opens FAB submenus
+    private void openSubMenusFab(){
+        layoutFabadd.setVisibility(View.VISIBLE);
+        layoutFabupdate.setVisibility(View.VISIBLE);
+        layoutFabdelete.setVisibility(View.VISIBLE);
+        //Change settings icon to 'X' icon
+        fabSettings.setImageResource(R.drawable.ic_close_black_24dp);
+        fabExpanded = true;
     }
 
     @Override
@@ -86,7 +140,6 @@ public class MainActivity2 extends AppCompatActivity {
                 }
             }, 2000);
     }
-
 
     @SuppressLint("StaticFieldLeak")
     private class Get_data extends AsyncTask<String,String,String> {
@@ -124,28 +177,31 @@ public class MainActivity2 extends AppCompatActivity {
                         JSONArray array=object.getJSONArray("vehicleinfo");
                         for (int i=0;i<array.length();i++){
                             JSONObject j2 = array.getJSONObject(i);
-                            String vimage=j2.getString("Vimage1");
-                            String name=j2.getString("FullName");
-                            String FromDate=j2.getString("FromDate");
-                            String ToDate=j2.getString("ToDate");
-                            String bookingdate=j2.getString("PostingDate");
-                            String BrandName=j2.getString("BrandName");
-                            String veh_title=j2.getString("VehiclesTitle");
-                            String message=j2.getString("message");
-                            String status=j2.getString("Status");
-                            String id=j2.getString("id");
+                            String vendor_id=j2.getString("Vendor_id");
+                            if (vendor_id.equalsIgnoreCase(vendor)) {
+                                String vimage = j2.getString("Vimage1");
+                                String name = j2.getString("FullName");
+                                String FromDate = j2.getString("FromDate");
+                                String ToDate = j2.getString("ToDate");
+                                String bookingdate = j2.getString("PostingDate");
+                                String BrandName = j2.getString("BrandName");
+                                String veh_title = j2.getString("VehiclesTitle");
+                                String message = j2.getString("message");
+                                String status = j2.getString("Status");
+                                String id = j2.getString("id");
 
-                            userid.add(id);
-                            names.add(name);
-                            from_date.add(FromDate);
-                            to_date.add(ToDate);
-                            booking_date.add(bookingdate);
-                            brand.add(BrandName);
-                            pics.add(vimage);
-                            vehicle_title.add(veh_title);
-                            messages.add(message);
-                            statusofbooking.add(status);
+                                userid.add(id);
+                                names.add(name);
+                                from_date.add(FromDate);
+                                to_date.add(ToDate);
+                                booking_date.add(bookingdate);
+                                brand.add(BrandName);
+                                pics.add(vimage);
+                                vehicle_title.add(veh_title);
+                                messages.add(message);
+                                statusofbooking.add(status);
 
+                            }
                         }
                         LinearLayoutManager layoutManager=new LinearLayoutManager(MainActivity2.this, LinearLayoutManager.VERTICAL,false);
                         recyclerView.setLayoutManager(layoutManager);
@@ -196,5 +252,4 @@ public class MainActivity2 extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

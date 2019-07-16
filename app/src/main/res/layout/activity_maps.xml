@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:keepScreenOn="true"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MapsActivity"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/camera_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#fff"
+        android:src="@drawable/ic_my_location_black_24dp"
+        app:fabSize="mini"
+        android:layout_margin="30sp"
+        android:layout_alignEnd="@id/map"
+        android:layout_alignTop="@id/map"
+        android:clickable="true"
+        android:text="Stop Navigation"
+        tools:ignore="HardcodedText,MissingConstraints"
+        android:focusable="true" />
+</RelativeLayout>

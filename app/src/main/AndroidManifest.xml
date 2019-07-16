@@ -8,10 +8,10 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Edit_Vehicle"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,10 +37,14 @@
         <activity android:name=".MainActivity1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity2" />
+        <activity
+            android:name=".MainActivity2"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
@@ -51,10 +56,15 @@
             android:name=".MainActivity3"
             android:label="@string/app_name"
             android:parentActivityName=".MainActivity2" />
-        <activity android:name=".Add_Vehicle"
+        <activity
+            android:name=".Add_Vehicle"
             android:label="Add Vehicle"
             android:parentActivityName=".MainActivity2"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Update_Vehicle"
+            android:label="Update Vehicle"
+            android:parentActivityName=".MainActivity2" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
