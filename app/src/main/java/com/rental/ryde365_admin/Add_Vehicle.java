@@ -53,7 +53,7 @@ public class Add_Vehicle extends AppCompatActivity {
 
     int PICK_IMAGE_MULTIPLE = 1;
     String imageEncoded;
-    ArrayList<String> imagesEncodedList;
+    ArrayList<String> imagesEncodedList=new ArrayList<>();
     SharedPreferences preferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,7 +128,7 @@ public class Add_Vehicle extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!veh_title.getText().toString().trim().isEmpty()|| !overview.getText().toString().isEmpty()|| !model.getText().toString().isEmpty() || !seating_capacity.getText().toString().isEmpty() ||
-                        !city_id.get(veh_brand_position).equalsIgnoreCase("NULL")||!brand_id.get(veh_brand_position).equalsIgnoreCase("NULL")|| imagesEncodedList.size()==5) {
+                        !city_id.get(veh_brand_position).equalsIgnoreCase("NULL")||!brand_id.get(veh_brand_position).equalsIgnoreCase("NULL")|| imagesEncodedList.size()<5) {
                     new Upload_img().execute("");
                     JSONObject object = new JSONObject();
                     try {
@@ -202,12 +202,12 @@ public class Add_Vehicle extends AppCompatActivity {
                         } else {
                             object.put("LeatherSeats", "0");
                         }
-                        object.put("img1", imagesEncodedList.get(0).substring(imagesEncodedList.get(0).lastIndexOf("/") + 1));
-                        object.put("img2", imagesEncodedList.get(1).substring(imagesEncodedList.get(1).lastIndexOf("/") + 1));
-                        object.put("img3", imagesEncodedList.get(2).substring(imagesEncodedList.get(2).lastIndexOf("/") + 1));
-                        object.put("img4", imagesEncodedList.get(3).substring(imagesEncodedList.get(3).lastIndexOf("/") + 1));
-                        object.put("img5", imagesEncodedList.get(4).substring(imagesEncodedList.get(4).lastIndexOf("/") + 1));
 
+                        if (imagesEncodedList.size()>0) {
+                            for (int i = 0; i < imagesEncodedList.size(); i++) {
+                                object.put("img" + i + "", imagesEncodedList.get(0).substring(imagesEncodedList.get(i).lastIndexOf("/") + 1));
+                            }
+                        }
                         Upload_data uploadData = new Upload_data();
                         uploadData.execute(object.toString());
 

@@ -75,7 +75,9 @@
                     android:inputType="textMultiLine"
                     android:maxLines="2"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
-                    android:scrollbars="vertical" />
+                    android:overScrollMode="always"
+                    android:scrollbarStyle="insideInset"
+                    android:scrollbars="vertical"/>
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -127,16 +129,57 @@
                     android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
-        <Button
-            android:layout_marginStart="20sp"
-            android:layout_marginEnd="20sp"
-            android:id="@+id/update_veh_images"
-            android:textAllCaps="false"
-            android:text="Upload Images"
-            android:layout_weight="1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:id="@+id/update_veh_images"
+                android:textAllCaps="false"
+                android:text="Update Images"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
+            <HorizontalScrollView
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:scrollbars="none"
+                android:overScrollMode="always"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:padding="10sp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:scrollbars="horizontal"
+                    android:scrollbarAlwaysDrawHorizontalTrack="true">
+                    <ImageView
+                        android:id="@+id/update_veh_img1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/update_veh_img2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/update_veh_img3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/update_veh_img4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:id="@+id/update_veh_img5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
         <LinearLayout
             android:gravity="center_horizontal"
             android:padding="20sp"
@@ -286,7 +329,7 @@
             </LinearLayout>
         </LinearLayout>
         <Button
-            android:id="@+id/update_veh_submit_btn"
+            android:id="@+id/update_veh_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"

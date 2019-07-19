@@ -47,7 +47,7 @@ public class MainActivity2 extends AppCompatActivity {
     private FloatingActionButton fabSettings;
     private LinearLayout layoutFabadd;
     private LinearLayout layoutFabupdate;
-    private LinearLayout layoutFabdelete;
+    //private LinearLayout layoutFabdelete;
     SharedPreferences sharedPreferences;
     String vendor;
     @Override
@@ -60,7 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
         fabSettings = this.findViewById(R.id.fabSetting);
 
         layoutFabadd = this.findViewById(R.id.layoutFab_add);
-        layoutFabdelete = this.findViewById(R.id.layoutFab_delete);
+        //layoutFabdelete = this.findViewById(R.id.layoutFab_delete);
         layoutFabupdate = this.findViewById(R.id.layoutFab_update);
         sharedPreferences=getSharedPreferences("Admin",MODE_PRIVATE);
         vendor=sharedPreferences.getString("vendor_id", null);
@@ -107,8 +107,8 @@ public class MainActivity2 extends AppCompatActivity {
     private void closeSubMenusFab(){
         layoutFabadd.setVisibility(View.INVISIBLE);
         layoutFabupdate.setVisibility(View.INVISIBLE);
-        layoutFabdelete.setVisibility(View.INVISIBLE);
-        //Change settings icon to '+' icon
+        //layoutFabdelete.setVisibility(View.INVISIBLE);
+        //Change settings icon to 'settings' icon
         fabSettings.setImageResource(R.drawable.ic_settings_black_24dp);
         fabExpanded = false;
     }
@@ -117,7 +117,7 @@ public class MainActivity2 extends AppCompatActivity {
     private void openSubMenusFab(){
         layoutFabadd.setVisibility(View.VISIBLE);
         layoutFabupdate.setVisibility(View.VISIBLE);
-        layoutFabdelete.setVisibility(View.VISIBLE);
+        //layoutFabdelete.setVisibility(View.VISIBLE);
         //Change settings icon to 'X' icon
         fabSettings.setImageResource(R.drawable.ic_close_black_24dp);
         fabExpanded = true;

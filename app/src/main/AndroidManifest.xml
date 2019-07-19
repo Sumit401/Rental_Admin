@@ -67,7 +67,8 @@
             android:parentActivityName=".MainActivity2" />
         <activity android:name=".Edit_Vehicle"
             android:label="Edit Vehicle"
-            android:parentActivityName=".MainActivity2"/>
+            android:parentActivityName=".Update_Vehicle"
+            android:windowSoftInputMode="stateHidden"/>
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
